@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/SimpleSlotMachine/static/css/main.b47bead6.chunk.css",
+    "main.js": "/SimpleSlotMachine/static/js/main.05181776.chunk.js",
+    "main.js.map": "/SimpleSlotMachine/static/js/main.05181776.chunk.js.map",
+    "runtime-main.js": "/SimpleSlotMachine/static/js/runtime-main.f495ce05.js",
+    "runtime-main.js.map": "/SimpleSlotMachine/static/js/runtime-main.f495ce05.js.map",
+    "static/js/2.a23ca443.chunk.js": "/SimpleSlotMachine/static/js/2.a23ca443.chunk.js",
+    "static/js/2.a23ca443.chunk.js.map": "/SimpleSlotMachine/static/js/2.a23ca443.chunk.js.map",
+    "static/js/3.075ad33d.chunk.js": "/SimpleSlotMachine/static/js/3.075ad33d.chunk.js",
+    "static/js/3.075ad33d.chunk.js.map": "/SimpleSlotMachine/static/js/3.075ad33d.chunk.js.map",
+    "index.html": "/SimpleSlotMachine/index.html",
+    "static/css/main.b47bead6.chunk.css.map": "/SimpleSlotMachine/static/css/main.b47bead6.chunk.css.map",
+    "static/js/2.a23ca443.chunk.js.LICENSE.txt": "/SimpleSlotMachine/static/js/2.a23ca443.chunk.js.LICENSE.txt",
+    "static/media/0.51d56b6e.png": "/SimpleSlotMachine/static/media/0.51d56b6e.png",
+    "static/media/1.51d56b6e.png": "/SimpleSlotMachine/static/media/1.51d56b6e.png",
+    "static/media/2.6691363e.png": "/SimpleSlotMachine/static/media/2.6691363e.png",
+    "static/media/3.7fb5fedd.png": "/SimpleSlotMachine/static/media/3.7fb5fedd.png",
+    "static/media/4.7c5fc373.png": "/SimpleSlotMachine/static/media/4.7c5fc373.png",
+    "static/media/5.f000cabe.png": "/SimpleSlotMachine/static/media/5.f000cabe.png",
+    "static/media/6.51d56b6e.png": "/SimpleSlotMachine/static/media/6.51d56b6e.png",
+    "static/media/handle.b479bee4.svg": "/SimpleSlotMachine/static/media/handle.b479bee4.svg",
+    "static/media/machine back-01.e929c217.svg": "/SimpleSlotMachine/static/media/machine back-01.e929c217.svg",
+    "static/media/machine back.19e2ff55.svg": "/SimpleSlotMachine/static/media/machine back.19e2ff55.svg",
+    "static/media/machine front.7093d98b.svg": "/SimpleSlotMachine/static/media/machine front.7093d98b.svg",
+    "static/media/sun.b3d8a86c.svg": "/SimpleSlotMachine/static/media/sun.b3d8a86c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f495ce05.js",
+    "static/js/2.a23ca443.chunk.js",
+    "static/css/main.b47bead6.chunk.css",
+    "static/js/main.05181776.chunk.js"
+  ]
+}
