@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import MachineBackImagePng from '../images/handle.png';
+import MachineBackImagePng from '../images/handle.svg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((
@@ -8,11 +8,11 @@ const useStyles = makeStyles((
             position: "relative",
         },
         machineBackImage: {
-            width: "20vh",
-            height: "40vh",
+            width: "15vw",
+            height: "30vw",
             position: "absolute",
-            left: "calc(50vw + -30vh + 70vh)",
-            top: "10vh",
+            top: "calc(50vh + -15vw + -15vw)",
+            left: "85vw",
             transitionDuration: "0.3s",
             userDrag: "none",
             userSelect: "none",
@@ -22,34 +22,30 @@ const useStyles = makeStyles((
 
 function Handle(props) {
     const classes = useStyles();
-    const [handleState, setHandleState] = useState(false);
 
     useEffect(() => {
         document.addEventListener('mousedown', mouseDown);
         document.addEventListener('mouseup', mouseUp);
     }, []);
 
+    const [handleState, setHandleState] = useState(null);
+
+    useEffect(() => {
+        if (handleState === true) {
+            props.handlePress();
+        } else if (handleState === false) {
+            props.handleRelease();
+        }
+    }, [handleState]);
+
     const mouseDown = (e) => {
         if (e.clientX >= window.innerWidth * 0.5) {
-            setHandleState(prevState => {
-                if (prevState === false) {
-                    props.handlePress();
-                }
-                return true;
-            });
-            setTimeout((e) => {
-                mouseUp();
-            }, 8000);
+            setHandleState(true);
         }
     }
 
     const mouseUp = (e) => {
-        setHandleState(prevState => {
-            if (prevState === true) {
-                props.handleRelease();
-            }
-            return false;
-        });
+        setHandleState(false);
     }
 
     const handleStyle = handleState ? {

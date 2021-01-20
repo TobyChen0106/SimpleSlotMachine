@@ -1,5 +1,5 @@
 import { ReactComponent as MachineBackImage } from '../images/machine back.svg';
-import MachineBackImagePng from '../images/machine back.png';
+import MachineBackImagePng from '../images/machine back-01.svg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((
@@ -8,11 +8,13 @@ const useStyles = makeStyles((
             position: "relative",
         },
         machineBackImage: {
-            width: "110vh",
-            height: "110vh",
+            width: "110vw",
+            height: "110vw",
             position: "absolute",
-            left: "calc(50vw + -55vh)",
-            top: "-5vh"
+            left: "-10vw",
+            top: "calc(50vh + -55vw )",
+            userDrag: "none",
+            userSelect: "none",
         }
     })
 );

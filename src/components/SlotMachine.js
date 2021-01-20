@@ -7,11 +7,11 @@ const useStyles = makeStyles((
             position: "relative",
         },
         machineFrontImage: {
-            width: "110vh",
-            height: "110vh",
+            width: "110vw",
+            height: "110vw",
             position: "absolute",
-            left: "calc(50vw + -55vh)",
-            top: "-5vh",
+            left: "-10vw",
+            top: "calc(50vh + -55vw )",
             userDrag: "none",
             userSelect: "none",
         }

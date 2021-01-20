@@ -8,11 +8,11 @@ const useStyles = makeStyles((
         },
         backGroundImage: {
             position: "absolute",
-            left: "-25vw",
-            top: "calc(-75vw + 50vh)",
-            width: "150vw",
-            height: "150vw",
-            animation: `$rotate 120s infinite linear`,
+            left: "calc(-75vh + 50vw)",
+            top: "-25vh",
+            width: "150vh",
+            height: "150vh",
+            animation: `$rotate 80s infinite linear`,
             overflow: "hidden",
         },
         "@keyframes rotate": {

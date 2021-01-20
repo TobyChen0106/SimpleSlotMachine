@@ -5,7 +5,7 @@ import SlotMachineBack from '../components/SlotMachineBack'
 import Background from '../components/Background'
 import Rollers from '../components/Rollers'
 import Handle from '../components/Handle'
-import { ReactComponent as BackGroundImage } from '../images/sun.svg';
+import './firework.css'
 
 const useStyles = makeStyles((
     {
@@ -38,32 +38,49 @@ const useStyles = makeStyles((
     })
 );
 
-let ok = true;
-
 function Game() {
     const classes = useStyles({ test: "tset" });
     const [turnState, setTurnState] = useState(true);
     const [preTurnState, setPreTurnState] = useState(false);
     const [target, setTarget] = useState([0, 0, 0]);
 
+    const [gameStatus, setGameStatus] = useState('init');
+    useEffect(() => {
+        if (gameStatus === 'done') {
+            setTimeout(() => {
+                setGameStatus('ready');
+            }, 5000);
+        }
+    }, [gameStatus]);
+
+    useEffect(() => {
+        setTarget([6, 6, 6]);
+        setGameStatus('init');
+        setTimeout(() => {
+            setGameStatus('ready');
+        }, 5000);
+    }, []);
+
     const handlePress = () => {
-        // console.log("press");
-        // if (ok === true) {
-        //     setPreTurnState(true);
-        // }
+        if (gameStatus === 'ready') {
+            // console.log("pressed");
+            setGameStatus('pressed');
+            setPreTurnState(true);
+        }
     };
 
     const handleRelease = () => {
-        // if (ok === true) {
-        //     const result = [Math.floor(Math.random() * (6 - 3)) + 2, Math.floor(Math.random() * (6 - 3)) + 2, Math.floor(Math.random() * (6 - 3)) + 2];
-        //     setTarget(result);
-        //     setPreTurnState(false);
-        //     ok = false;
-        //     setTimeout(() => {
-        //         ok = true;
-        //         handleResult(result);
-        //     }, 6000);
-        // }
+        if (gameStatus === 'pressed') {
+            // console.log('released');
+            setGameStatus('released');
+            const result = [Math.floor(Math.random() * (6 - 1)) + 2, Math.floor(Math.random() * (6 - 1)) + 2, Math.floor(Math.random() * (6 - 1)) + 2];
+            setTarget(result);
+            setPreTurnState(false);
+            setTimeout(() => {
+                setGameStatus('done');
+                handleResult(result);
+            }, 5000);
+        }
     };
 
     const handleResult = (result) => {
@@ -72,14 +89,17 @@ function Game() {
 
     return (
         <div className={classes.gameRoot}>
-            {/* <Background zIndex={0} fill="#D93B3B" /> */}
+            <Background zIndex={0} fill="#D93B3B" />
             <div className={classes.shadow} style={{ zIndex: 1 }} />
             <SlotMachineBack zIndex={10} />
             <Rollers zIndex={50} target={target} turn={turnState} preturn={preTurnState} />
             <Handle zIndex={80} handlePress={handlePress} handleRelease={handleRelease} />
-            {/* <SlotMachine zIndex={100} /> */}
-            {/* <button className={classes.turnButton} onClick={() => turn()} style={{ zIndex: 1000 }}>Turn</button> */}
+            <SlotMachine zIndex={100} />
 
+            <div className="pyro" style={gameStatus === 'done' ? null : { display: 'none' }}>
+                <div className="before"></div>
+                <div className="after"></div>
+            </div>
         </div>
     );
 }
