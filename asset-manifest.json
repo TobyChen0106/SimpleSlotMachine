@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/SimpleSlotMachine/static/css/main.b47bead6.chunk.css",
-    "main.js": "/SimpleSlotMachine/static/js/main.4f141728.chunk.js",
-    "main.js.map": "/SimpleSlotMachine/static/js/main.4f141728.chunk.js.map",
+    "main.js": "/SimpleSlotMachine/static/js/main.b2bee009.chunk.js",
+    "main.js.map": "/SimpleSlotMachine/static/js/main.b2bee009.chunk.js.map",
     "runtime-main.js": "/SimpleSlotMachine/static/js/runtime-main.f495ce05.js",
     "runtime-main.js.map": "/SimpleSlotMachine/static/js/runtime-main.f495ce05.js.map",
     "static/js/2.a23ca443.chunk.js": "/SimpleSlotMachine/static/js/2.a23ca443.chunk.js",
@@ -29,6 +29,6 @@
     "static/js/runtime-main.f495ce05.js",
     "static/js/2.a23ca443.chunk.js",
     "static/css/main.b47bead6.chunk.css",
-    "static/js/main.4f141728.chunk.js"
+    "static/js/main.b2bee009.chunk.js"
   ]
 }
