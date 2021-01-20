@@ -24,8 +24,8 @@ function Handle(props) {
     const classes = useStyles();
 
     useEffect(() => {
-        document.addEventListener('mousedown', mouseDown);
-        document.addEventListener('mouseup', mouseUp);
+        document.addEventListener('touchstart', mouseDown);
+        document.addEventListener('touchend', mouseUp);
     }, []);
 
     const [handleState, setHandleState] = useState(null);
