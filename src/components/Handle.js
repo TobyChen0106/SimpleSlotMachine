@@ -24,6 +24,8 @@ function Handle(props) {
     const classes = useStyles();
 
     useEffect(() => {
+        document.addEventListener('mousedown', mouseDown);
+        document.addEventListener('mouseup', mouseUp);
         document.addEventListener('touchstart', mouseDown);
         document.addEventListener('touchend', mouseUp);
     }, []);
@@ -39,12 +41,14 @@ function Handle(props) {
     }, [handleState]);
 
     const mouseDown = (e) => {
+        e.preventDefault();
         if (e.clientX >= window.innerWidth * 0.5) {
             setHandleState(true);
         }
     }
 
     const mouseUp = (e) => {
+        e.preventDefault();
         setHandleState(false);
     }
 
