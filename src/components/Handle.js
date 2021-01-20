@@ -26,7 +26,7 @@ function Handle(props) {
     useEffect(() => {
         document.addEventListener('mousedown', mouseDown);
         document.addEventListener('mouseup', mouseUp);
-        document.addEventListener('touchstart', mouseDown);
+        document.addEventListener('touchstart', mouseDownt);
         document.addEventListener('touchend', mouseUp);
     }, []);
 
@@ -43,6 +43,13 @@ function Handle(props) {
     const mouseDown = (e) => {
         e.preventDefault();
         if (e.clientX >= window.innerWidth * 0.5) {
+            setHandleState(true);
+        }
+    }
+
+    const mouseDownt = (e) => {
+        e.preventDefault();
+        if (e.touches[0].clientX >= window.innerWidth * 0.5) {
             setHandleState(true);
         }
     }
