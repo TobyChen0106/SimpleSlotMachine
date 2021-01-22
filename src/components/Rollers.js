@@ -8,10 +8,10 @@ const useStyles = makeStyles((
         rollersHolder: {
             display: "flex",
             position: "absolute",
-            height: "30vw",
-            width: "42vw",
-            top: "calc(50vh + -15vw)",
-            left: "24vw",
+            height: "50vw",
+            width: "60vw",
+            top: "calc(50vh + -25vw + -7vw)",
+            left: "11vw",
         },
     })
 );

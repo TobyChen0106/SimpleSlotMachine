@@ -1,4 +1,4 @@
-import { ReactComponent as MachineFrontImage } from '../images/machine front.svg';
+import { ReactComponent as MachineFrontImage } from '../images/machine front2.svg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((
@@ -7,11 +7,11 @@ const useStyles = makeStyles((
             position: "relative",
         },
         machineFrontImage: {
-            width: "110vw",
-            height: "110vw",
+            width: "100vw",
+            height: "100vw",
             position: "absolute",
-            left: "-10vw",
-            top: "calc(50vh + -55vw )",
+            left: "0vw",
+            top: "calc(50vh + -50vw )",
             userDrag: "none",
             userSelect: "none",
         }

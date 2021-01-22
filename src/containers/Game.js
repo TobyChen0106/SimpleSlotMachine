@@ -18,14 +18,14 @@ const useStyles = makeStyles((
         },
         shadow: {
             background: "rgb(0,0,0)",
-            background: "radial-gradient(circle, rgba(0,0,0,7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.1) 65%)",
+            background: "radial-gradient(circle, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.1) 65%)",
             boxShadow: "0 0 2.5vh 5vh rgba(0,0,0,0.1)",
-            width: "120vh",
-            height: "120vh",
+            width: "140vw",
+            height: "140vw",
             borderRadius: "50%",
             position: "absolute",
-            left: "calc(50vw + -60vh)",
-            top: "0vh",
+            left: "-20vw",
+            top: "calc(52vh + -70vw)",
         },
         turnButton: {
             width: "10vh",
@@ -49,7 +49,7 @@ function Game() {
         if (gameStatus === 'done') {
             setTimeout(() => {
                 setGameStatus('ready');
-            }, 5000);
+            }, 4500);
         }
     }, [gameStatus]);
 

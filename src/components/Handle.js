@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import MachineBackImagePng from '../images/handle.svg';
+import MachineBackImagePng from '../images/handle2.svg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((
@@ -12,7 +12,7 @@ const useStyles = makeStyles((
             height: "30vw",
             position: "absolute",
             top: "calc(50vh + -15vw + -15vw)",
-            left: "85vw",
+            left: "80vw",
             transitionDuration: "0.3s",
             userDrag: "none",
             userSelect: "none",

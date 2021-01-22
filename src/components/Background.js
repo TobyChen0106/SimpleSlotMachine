@@ -12,7 +12,7 @@ const useStyles = makeStyles((
             top: "-25vh",
             width: "150vh",
             height: "150vh",
-            animation: `$rotate 80s infinite linear`,
+            animation: `$rotate 60s infinite linear`,
             overflow: "hidden",
         },
         "@keyframes rotate": {

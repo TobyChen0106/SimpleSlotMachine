@@ -22,12 +22,12 @@ const list = [
 const useStyles = makeStyles((
     {
         rollerSlot: {
-            height: "30vw",
-            width: "14vw"
+            height: "50vw",
+            width: "25vw"
         },
         slotItem: {
-            height: "30vw",
-            width: "14vw",
+            height: "50vw",
+            width: "25vw",
             display: "flex",
             justifyContent: "center",
             alignItems: "center"
