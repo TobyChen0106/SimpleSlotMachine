@@ -1,0 +1,42 @@
+//CASH START
+{"COMMAND":257,"PARAMS":"[{\"NAME\":\"ITEM_AMOUNT\",\"VALUE\":\"234\"},{\"NAME\":\"ITEM_TIMEOUT\",\"VALUE\":\"30000\"}]"}
+
+// CASH STOP
+{"COMMAND":259,"PARAMS":"[]"}
+
+
+// Message Sample
+Connecting to server...
+Connection open
+
+// 交易成功. 找零
+// Cash Start OK
+Got Message: {"COMMAND":258,"MESSAGE":0,"RETURNED_MESSAGE":"ERROR_OK","DATA":null}
+// Accepted NT: 100. Total Accepted: 100. Remained: 134
+Got Message: {"COMMAND":4352,"MESSAGE":5377(0x1501),"RETURNED_MESSAGE":null,"DATA":"[{\"NAME\":\"ITEM_ACCEPTED\",\"VALUE\":\"100\"},{\"NAME\":\"ITEM_TOTAL_ACCEPTED\",\"VALUE\":\"100\"},{\"NAME\":\"ITEM_REMAINED\",\"VALUE\":\"134\"}]"}
+// Accepted NT: 100. Total Accepted: 200. Remained: 34
+Got Message: {"COMMAND":4352,"MESSAGE":5377(0x1501),"RETURNED_MESSAGE":null,"DATA":"[{\"NAME\":\"ITEM_ACCEPTED\",\"VALUE\":\"100\"},{\"NAME\":\"ITEM_TOTAL_ACCEPTED\",\"VALUE\":\"200\"},{\"NAME\":\"ITEM_REMAINED\",\"VALUE\":\"34\"}]"}
+// Accepted NT: 100. Total Accepted: 300. Remained: 0
+Got Message: {"COMMAND":4352,"MESSAGE":5377(0x1501),"RETURNED_MESSAGE":null,"DATA":"[{\"NAME\":\"ITEM_ACCEPTED\",\"VALUE\":\"100\"},{\"NAME\":\"ITEM_TOTAL_ACCEPTED\",\"VALUE\":\"300\"},{\"NAME\":\"ITEM_REMAINED\",\"VALUE\":\"0\"}]"}
+// Transaction OK. Accepted FINISH. Amount: 234. Total Accepted: 300. Refund: 66
+Got Message: {"COMMAND":4352,"MESSAGE":5409(0x1521),"RETURNED_MESSAGE":null,"DATA":"[{\"NAME\":\"ITEM_AMOUNT\",\"VALUE\":\"234\"},{\"NAME\":\"ITEM_TOTAL_ACCEPTED\",\"VALUE\":\"300\"},{\"NAME\":\"ITEM_CHANGE\",\"VALUE\":\"66\"}]"}
+
+// 交易取消. 
+// Cash Start OK
+Got Message: {"COMMAND":258,"MESSAGE":0,"RETURNED_MESSAGE":"ERROR_OK","DATA":null}
+// Accepted NT: 100. Total Accepted: 100. Remained: 134
+Got Message: {"COMMAND":4352(0x1100),"MESSAGE":5377(0x1501),"RETURNED_MESSAGE":null,"DATA":"[{\"NAME\":\"ITEM_ACCEPTED\",\"VALUE\":\"100\"},{\"NAME\":\"ITEM_TOTAL_ACCEPTED\",\"VALUE\":\"100\"},{\"NAME\":\"ITEM_REMAINED\",\"VALUE\":\"134\"}]"}
+// Aeeepted Un-Identified Note. Rejected
+Got Message: {"COMMAND":4352(0x1100),"MESSAGE":5378(0x1502),"RETURNED_MESSAGE":null,"DATA":null}
+// Cash Stop OK
+Got Message: {"COMMAND":260,"MESSAGE":0,"RETURNED_MESSAGE":"ERROR_OK","DATA":null}
+// Cash Canceled
+Got Message: {"COMMAND":4352,"MESSAGE":5636(0x1604),"RETURNED_MESSAGE":null,"DATA":null}
+
+// 交易逾時.
+// Cash Start OK
+Got Message: {"COMMAND":258,"MESSAGE":0,"RETURNED_MESSAGE":"ERROR_OK","DATA":null}
+// Accepted NT: 100. Total Accepted: 100. Remained: 134
+Got Message: {"COMMAND":4352,"MESSAGE":5377,"RETURNED_MESSAGE":null,"DATA":"[{\"NAME\":\"ITEM_ACCEPTED\",\"VALUE\":\"100\"},{\"NAME\":\"ITEM_TOTAL_ACCEPTED\",\"VALUE\":\"100\"},{\"NAME\":\"ITEM_REMAINED\",\"VALUE\":\"134\"}]"}
+// Cash Timeout
+Got Message: {"COMMAND":4352,"MESSAGE":5637,"RETURNED_MESSAGE":null,"DATA":null}

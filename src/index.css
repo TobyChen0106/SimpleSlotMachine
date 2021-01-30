@@ -1,8 +1,15 @@
+@font-face {
+  font-family: 'GenYoGothicTW';
+  src: url('./fonts/GenYoGothicTW-Heavy.woff') format('woff'),
+  url('./fonts/GenYoGothicTW-Heavy.ttf') format('truetype');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "GenYoGothicTW";
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
