@@ -12,12 +12,11 @@ const useStyles = makeStyles((
             top: "-25vh",
             width: "150vh",
             height: "150vh",
-            animation: `$rotate 60s infinite linear`,
+            animation: `$rotate 30s infinite linear`,
             overflow: "hidden",
         },
         "@keyframes rotate": {
             "0%": { transform: "rotate(0deg)" },
-            // "50%": { transform: "rotate(180deg)" },
             "100%": { transform: "rotate(360deg)" }
         },
     })
@@ -27,7 +26,7 @@ function SlotMachine(props) {
     const classes = useStyles();
     return (
         <div className={classes.backGroundHolder} style={{ zIndex: props.zIndex }}>
-            <BackGroundImage className={classes.backGroundImage} fill={props.fill}/>
+            <BackGroundImage className={classes.backGroundImage}/>
         </div>
     );
 }

@@ -8,6 +8,8 @@ import image_3 from '../images/3.png'
 import image_4 from '../images/4.png'
 import image_5 from '../images/5.png'
 import image_6 from '../images/6.png'
+import image_7 from '../images/7.png'
+import image_8 from '../images/8.png'
 
 const list = [
     { value: 0, image: image_0 },
@@ -17,26 +19,26 @@ const list = [
     { value: 4, image: image_4 },
     { value: 5, image: image_5 },
     { value: 6, image: image_6 },
+    { value: 7, image: image_7 },
+    { value: 8, image: image_8 },
 ];
 
 const useStyles = makeStyles((
     {
         rollerSlot: {
-            height: "50vw",
+            height: "40vw",
             width: "25vw"
         },
         slotItem: {
-            height: "50vw",
+            height: "40vw",
             width: "25vw",
             display: "flex",
             justifyContent: "center",
             alignItems: "center"
         },
         slotItemImage: {
-            width: "60%",
+            width: "65%",
             height: "auto",
-            opacity: 0.9,
-            filter: "brightness(80%)" 
         }
     })
 );

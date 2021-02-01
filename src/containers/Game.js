@@ -10,13 +10,15 @@ import BGMSrc from "../musics/BGM.mp3";
 import fireworkSrc from "../musics/firework.mp3";
 import clapsSrc from "../musics/claps.mp3";
 import failSrc from "../musics/fail.mp3";
+import axios from "axios";
+
 import "./firework.css";
 
 const useStyles = makeStyles({
   gameRoot: {
     width: "100vw",
     height: "100vh",
-    backgroundColor: "#227373",
+    backgroundColor: "#420433",
     position: "relative",
     overflow: "hidden",
   },
@@ -87,15 +89,10 @@ function Game() {
             // Wait for money Timeout
             case 0x1123:
               // Money PAYOUT SUCCESS
-              bgm.pause();
-              firework.pause();
-              claps.pause();
-              fail.pause();
-              bgm.currentTime = 0;
-              firework.currentTime = 0;
-              claps.currentTime = 0;
-              fail.currentTime = 0;
-              setGameStatus("init");
+              setMoneyCounter((pre) => {
+                if (pre - 100 === 0) reset2init();
+                return pre - 100;
+              });
 
               break;
             default:
@@ -110,7 +107,28 @@ function Game() {
     ws.current.onclose = () => {
       console.log("ws disconnected");
     };
+    document.addEventListener(
+      "contextmenu",
+      function (e) {
+        e.preventDefault();
+      },
+      false
+    );
   }, []);
+
+  const reset2init = () => {
+    bgm.pause();
+    firework.pause();
+    claps.pause();
+    fail.pause();
+    bgm.currentTime = 0;
+    firework.currentTime = 0;
+    claps.currentTime = 0;
+    fail.currentTime = 0;
+    setTarget([0, 0, 0]);
+    setReward(0);
+    setGameStatus("init");
+  };
 
   const WS_SendData = (objData) => {
     //var objData = document.getElementById("TB_DATA").value;
@@ -129,6 +147,7 @@ function Game() {
   const [preTurnState, setPreTurnState] = useState(false);
   const [target, setTarget] = useState([0, 0, 0]);
   const [reward, setReward] = useState(0);
+  const [moneyCounter, setMoneyCounter] = useState(0);
 
   const [gameStatus, setGameStatus] = useState("init");
   useEffect(() => {
@@ -165,80 +184,87 @@ function Game() {
   const handleRelease = () => {
     if (gameStatus === "in-game-pressed") {
       setGameStatus("in-game-released");
-      const result = [
-        Math.floor(Math.random() * (6 - 1)) + 2,
-        Math.floor(Math.random() * (6 - 1)) + 2,
-        Math.floor(Math.random() * (6 - 1)) + 2,
-      ];
-      setTarget(result);
-      setPreTurnState(false);
-      setTimeout(() => {
-        setGameStatus("in-game-show-result");
-        handleResult(result);
-      }, 6000);
+      getRewardFromServer();
+      // console.log(result, reward);
+      // setTarget(result);
+      // setTarget(reward);
     }
   };
 
+  const getRewardFromServer = () => {
+    let result = [2, 2, 2];
+    axios
+      .get("/api/get-reward")
+      .then(function (response) {
+        // handle success
+        return response.data.reward ? response.data.reward : 0;
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        window.alert("[錯誤] 與伺服器連線錯誤!");
+        return 0;
+      })
+      .then((r) => {
+        switch (Number(r)) {
+          case 0:
+            result = [
+              Math.floor(Math.random() * 5) + 2,
+              Math.floor(Math.random() * 5) + 2,
+              Math.floor(Math.random() * 5) + 2,
+            ];
+            break;
+          case 200:
+            result = [
+              Math.floor(Math.random() * 2) + 7,
+              Math.floor(Math.random() * 5) + 2,
+              Math.floor(Math.random() * 5) + 2,
+            ];
+            break;
+          case 300:
+            result = [8, 8, Math.floor(Math.random() * 5) + 2];
+            break;
+          case 500:
+            result = [7, 7, Math.floor(Math.random() * 5) + 2];
+            break;
+          case 1000:
+            result = [7, 7, 8];
+            break;
+          case 2000:
+            result = [7, 7, 7];
+            break;
+        }
+        setTarget(result);
+        setReward(r);
+        setPreTurnState(false);
+        setTimeout(() => {
+          setGameStatus("in-game-show-result");
+          handleResult(result, r);
+        }, 7000);
+      });
+  };
   // Handle Result
-  const handleResult = (result) => {
-    console.log("result:", result);
-    let got_rewrad = 0;
-    if (result[0] === result[1] && result[0] === result[2]) {
-      if (result[0] === 6) {
-        // ***
-        got_rewrad = 2000;
-      } else {
-        // ooo
-        got_rewrad = 1000;
-      }
-    } else if (result[0] === result[1]) {
-      if (result[0] === 6) {
-        // **o
-        got_rewrad = 500;
-      } else {
-        // oox
-        got_rewrad = 300;
-      }
-    } else if (result[0] === result[2]) {
-      if (result[0] === 6) {
-        // **o
-        got_rewrad = 500;
-      } else {
-        // oox
-        got_rewrad = 300;
-      }
-    } else if (result[1] === result[2]) {
-      if (result[0] === 6) {
-        // **o
-        got_rewrad = 500;
-      } else {
-        // oox
-        got_rewrad = 300;
-      }
-    } else if (result[0] === 6 || result[1] === 6 || result[2] === 6) {
-      got_rewrad = 200;
-    }
-
-    setReward(got_rewrad);
-
-    if (got_rewrad > 0) {
-      firework.play();
-      claps.play();
-    } else {
-      fail.play();
-    }
-
+  const handleResult = (result, reward) => {
+    console.log("result:", result, "reward: ", reward);
+    setMoneyCounter(reward);
     const data = {
       COMMAND: 0x0105,
       PARAMS: JSON.stringify([
         {
           NAME: "ITEM_AMOUNT",
-          VALUE: got_rewrad,
+          VALUE: reward,
         },
       ]),
     };
-    if (got_rewrad > 0) {
+    if (reward > 0) {
+      firework.play();
+      claps.play();
       WS_SendData(JSON.stringify(data));
+    } else {
+      setTimeout(() => {
+        fail.play();
+        reset2init();
+      }, 5000);
     }
   };
 
@@ -249,7 +275,7 @@ function Game() {
 
   return (
     <div className={classes.gameRoot}>
-      <Background zIndex={0} fill="#D93B3B" />
+      <Background zIndex={0} fill="#CD13BE" />
       <div className={classes.shadow} style={{ zIndex: 1 }} />
       <SlotMachineBack zIndex={10} />
       <Rollers

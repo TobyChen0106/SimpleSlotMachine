@@ -1,29 +1,33 @@
-<svg id="圖層_1" data-name="圖層 1"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1708.73 1706.48" cy="0" cx="0">
-    <!-- <style>.cls-1{fill:#e71f19;}</style> -->
-    <title>sun</title>
-    <polygon class="cls-1" points="853.24 853.24 298.9 1505.56 200.92 1407.59 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 148.95 1339.86 79.67 1219.86 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 47.01 1141 11.14 1007.16 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 0 922.52 0 783.96 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 486.62 1626.81 366.62 1557.53 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 699.33 1695.34 565.49 1659.48 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 200.92 298.9 298.9 200.92 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 366.62 148.95 486.62 79.67 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 565.49 47.01 699.33 11.14 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 783.96 0 922.52 0 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 79.67 486.62 148.95 366.62 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 11.14 699.33 47.01 565.49 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 1436.16 226.32 1529.67 328.58 853.24 853.24"/>
-    <polygon class="cls-1" points="853.2 853.24 1578.52 398.56 1642.37 521.53 853.2 853.24"/>
-    <polygon class="cls-1" points="853.2 853.24 1671.49 601.77 1701.34 737.09 853.2 853.24"/>
-    <polygon class="cls-1" points="853.24 853.21 1708.73 822.1 1702.54 960.52 853.24 853.21"/>
-    <polygon class="cls-1" points="853.24 853.24 1254.04 96.81 1370.83 171.39 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 1044.61 18.86 1176.71 60.66 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.28 1480.16 1436.2 1377.9 1529.71 853.24 853.28"/>
-    <polygon class="cls-1" points="853.24 853.24 1307.93 1578.56 1184.95 1642.41 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.24 1104.71 1671.53 969.4 1701.38 853.24 853.24"/>
-    <polygon class="cls-1" points="853.24 853.28 1609.67 1254.08 1535.1 1370.87 853.24 853.28"/>
-    <polygon class="cls-1" points="853.24 853.28 1687.63 1044.65 1645.83 1176.75 853.24 853.28"/>
-    <polygon class="cls-1" points="853.21 853.24 922.49 1706.48 783.92 1706.48 853.21 853.24"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1708.7 1706.5" style="enable-background:new 0 0 1708.7 1706.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#CD13BE;}
+</style>
+<title>sun2</title>
+<polygon class="st0" points="853.2,853.2 298.9,1505.6 200.9,1407.6 "/>
+<polygon class="st0" points="853.2,853.2 148.9,1339.9 79.7,1219.9 "/>
+<polygon class="st0" points="853.2,853.2 47,1141 11.1,1007.2 "/>
+<polygon class="st0" points="853.2,853.2 0,922.5 0,784 "/>
+<polygon class="st0" points="853.2,853.2 486.6,1626.8 366.6,1557.5 "/>
+<polygon class="st0" points="853.2,853.2 699.3,1695.3 565.5,1659.5 "/>
+<polygon class="st0" points="853.2,853.2 200.9,298.9 298.9,200.9 "/>
+<polygon class="st0" points="853.2,853.2 366.6,148.9 486.6,79.7 "/>
+<polygon class="st0" points="853.2,853.2 565.5,47 699.3,11.1 "/>
+<polygon class="st0" points="853.2,853.2 784,0 922.5,0 "/>
+<polygon class="st0" points="853.2,853.2 79.7,486.6 148.9,366.6 "/>
+<polygon class="st0" points="853.2,853.2 11.1,699.3 47,565.5 "/>
+<polygon class="st0" points="853.2,853.2 1436.2,226.3 1529.7,328.6 "/>
+<polygon class="st0" points="853.2,853.2 1578.5,398.6 1642.4,521.5 "/>
+<polygon class="st0" points="853.2,853.2 1671.5,601.8 1701.3,737.1 "/>
+<polygon class="st0" points="853.2,853.2 1708.7,822.1 1702.5,960.5 "/>
+<polygon class="st0" points="853.2,853.2 1254,96.8 1370.8,171.4 "/>
+<polygon class="st0" points="853.2,853.2 1044.6,18.9 1176.7,60.7 "/>
+<polygon class="st0" points="853.2,853.3 1480.2,1436.2 1377.9,1529.7 "/>
+<polygon class="st0" points="853.2,853.2 1307.9,1578.6 1184.9,1642.4 "/>
+<polygon class="st0" points="853.2,853.2 1104.7,1671.5 969.4,1701.4 "/>
+<polygon class="st0" points="853.2,853.3 1609.7,1254.1 1535.1,1370.9 "/>
+<polygon class="st0" points="853.2,853.3 1687.6,1044.7 1645.8,1176.8 "/>
+<polygon class="st0" points="853.2,853.2 922.5,1706.5 783.9,1706.5 "/>
 </svg>

@@ -17,6 +17,8 @@ const sentMoneyMsg = {
     '[{"NAME":"ITEM_AMOUNT","VALUE":"100"},{"NAME":"ITEM_TOTAL_ACCEPTED","VALUE":"100"},{"NAME":"ITEM_CHANGE","VALUE":"0"}]',
 };
 
+var timeout_handles = [];
+
 wss.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
@@ -26,9 +28,28 @@ wss.on("connection", function connection(ws) {
         ws.send(JSON.stringify(gotMoneyMsg));
       }, 1000);
     } else if (data.COMMAND === 0x0105) {
-      setTimeout(() => {
-        ws.send(JSON.stringify(sentMoneyMsg));
-      }, 6000);
+      let money = JSON.parse(data.PARAMS)[0].VALUE;
+      // send_money(money);
+      // setTimeout(() => {
+      //   ws.send(JSON.stringify(sentMoneyMsg));
+      // }, 6000);
+      console.log(money)
+      for(let i=0 ; i < Number(money)/100 ; ++i){
+        setTimeout(() => {
+          ws.send(JSON.stringify(sentMoneyMsg));
+        }, (i+1)*1000);
+      }
     }
   });
 });
+
+send_money = (remain_amount, handle) => {
+  if (remain_amount === 0) return;
+  if (remain_amount / 100 in timeout_handles) {
+    clearTimeout(timeout_handles[remain_amount / 100]);
+  }
+  timeout_handles[remain_amount / 100] = setTimeout(() => {
+    ws.send(JSON.stringify(sentMoneyMsg));
+  }, 1000);
+  send_money(remain_amount - 100, handle);
+};

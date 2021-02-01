@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import MachineBackImagePng from "../images/handle2.svg";
+import MachineBackImagePng from "../images/handle.png";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -7,11 +7,11 @@ const useStyles = makeStyles({
     position: "relative",
   },
   machineBackImage: {
-    width: "15vw",
-    height: "30vw",
+    width: "13vw",
+    height: "26vw",
     position: "absolute",
-    top: "calc(50vh + -15vw + -15vw)",
-    left: "80vw",
+    top: "calc(50vh + -15vw + -12vw)",
+    left: "87vw",
     transitionDuration: "0.3s",
     userDrag: "none",
     userSelect: "none",
@@ -49,28 +49,22 @@ function Handle(props) {
   //   }
 
   const mouseDown = (e) => {
-    e.preventDefault();
-    if (enable) {
-      if (e.clientX >= window.innerWidth * 0.5) {
-        setHandleState(true);
-      }
+    // e.preventDefault();
+    if (e.clientX >= window.innerWidth * 0.5) {
+      setHandleState(true);
     }
   };
 
   const mouseDownt = (e) => {
-    e.preventDefault();
-    if (enable) {
-      if (e.touches[0].clientX >= window.innerWidth * 0.5) {
-        setHandleState(true);
-      }
+    // e.preventDefault();
+    if (e.touches[0].clientX >= window.innerWidth * 0.5) {
+      setHandleState(true);
     }
   };
 
   const mouseUp = (e) => {
-    e.preventDefault();
-    if (enable) {
-      setHandleState(false);
-    }
+    // e.preventDefault();
+    setHandleState(false);
   };
 
   const handleStyle = handleState
