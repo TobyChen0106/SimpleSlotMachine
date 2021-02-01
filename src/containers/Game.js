@@ -235,11 +235,11 @@ function Game() {
             break;
         }
         setTarget(result);
-        setReward(r);
+        setReward(Number(r));
         setPreTurnState(false);
         setTimeout(() => {
           setGameStatus("in-game-show-result");
-          handleResult(result, r);
+          handleResult(result, Number(r));
         }, 7000);
       });
   };
@@ -261,8 +261,8 @@ function Game() {
       claps.play();
       WS_SendData(JSON.stringify(data));
     } else {
+      fail.play();
       setTimeout(() => {
-        fail.play();
         reset2init();
       }, 5000);
     }

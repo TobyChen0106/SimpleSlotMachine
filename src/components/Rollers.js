@@ -10,7 +10,7 @@ const useStyles = makeStyles((
             position: "absolute",
             height: "40vw",
             width: "75vw",
-            top: "calc(50vh + -25vw + 1vw)",
+            top: "calc(50vh + -25vw + 1.5vw)",
             left: "12.5vw",
         },
     })
