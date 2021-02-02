@@ -3,9 +3,9 @@ import pandas as pd
 
 rewardList = [0, 200, 300, 500, 1000, 2000]
 threshould = 4000
-probability = [100, 20, 15, 10, 10, 10]
+probability = [2220, 300, 300, 150, 20, 10]
 initial_value = 5000
-iteration = 5000
+iteration = 3000
 
 reward_id = [x for x in range(iteration)]
 rewards = []
