@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     border: "1vw solid #ffdffd",
     position: "absolute",
     left: "10vw",
-    top: "10vw",
+    bottom: "2vw",
     fontSize: "5vw",
     display: "flex",
     alignItems: "center",

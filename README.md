@@ -16,5 +16,5 @@
 ## Run WS test server
 1. node we_server.js (模擬出鈔機的 ws 伺服器)
 
-## how to run test (on 3000)
+## how to run test (on localhost:3000)
 1. npm startlocal
