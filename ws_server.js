@@ -1,6 +1,6 @@
 const WebSocket = require("ws");
 
-const wss = new WebSocket.Server({ port: 4000 });
+const wss = new WebSocket.Server({ port: 5233 });
 const gotMoneyMsg = {
   COMMAND: 4352,
   MESSAGE: 5409,

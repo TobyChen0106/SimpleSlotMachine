@@ -7,28 +7,29 @@ const useStyles = makeStyles({
   modal: {
     outline: "none",
     width: "80vw",
-    height: "40vw",
+    height: "20vw",
     backgroundColor: "#47073b",
     borderRadius: "3vw",
     border: "1vw solid #ffdffd",
     position: "absolute",
     left: "10vw",
-    top: "calc(50vh + -25vw + 45vw)",
+    top: "10vw",
     fontSize: "5vw",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     color: "#fff",
-
+    opacity: 0.8,
     boxShadow: `
             0 0 1.5vw #ffdffd,
             inset 0 0 1.5vw #ffdffd`,
   },
   button: {
+    opacity: 1,
     fontFamily: "GenYoGothicTW",
-    fontSize: "6vw",
-    width: "40vw",
-    height: "18vw",
+    fontSize: "4vw",
+    width: "30vw",
+    height: "12vw",
     borderRadius: "3vw",
     background: "#D93B3B",
     color: "white",
@@ -56,7 +57,7 @@ function MyModal(props) {
       break;
     case "wait-money":
       modalOpen = true;
-      modalContent = "請放入一百元以開始遊戲!";
+      modalContent = "請放入 一百元 開始遊戲!";
       break;
     case "in-game-show-result":
       modalOpen = true;

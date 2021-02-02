@@ -55,8 +55,8 @@ function Game() {
   const ws = useRef(null);
 
   useEffect(() => {
-    // ws.current = new WebSocket("ws://192.168.1.181:5233/");
-    ws.current = new WebSocket("ws://localhost:4000/");
+    ws.current = new WebSocket("ws://127.0.0.1:5233/");
+    // ws.current = new WebSocket("ws://localhost:4000/");
     ws.current.onopen = () => {
       console.log("ws connected");
     };
@@ -68,8 +68,9 @@ function Game() {
 
       switch (data.COMMAND) {
         case 0x0102:
-          if (data.RETURNED_MESSAGE === "ERROR_CASH_NOCHANGE") {
-            window.alert("ERROR_CASH_NOCHANGE");
+          if (String(data.RETURNED_MESSAGE) === "ERROR_CASH_NOCHANGE") {
+            window.alert("庫存現金不足!");
+            reset2init();
           }
           break;
         case 0x1100:
@@ -79,21 +80,27 @@ function Game() {
               // Got Money (Coin)
               break;
             case 0x1101:
-              // Got Money (Paper)
-              break;
+            // Got Money (Paper)
+            // break;
             case 0x1121:
               // GOT All Money
               setGameStatus("in-game-ready");
               break;
-            case 0x1205:
-            // Wait for money Timeout
+            case 0x1125:
+              // Wait for money Timeout
+              // case 0x1123:
+              //   // Money PAYOUT SUCCESS
+              //   setMoneyCounter((pre) => {
+              //     if (pre - 100 === 0) reset2init();
+              //     return pre - 100;
+              //   });
+              // window.alert("請求現金逾時!");
+              console.log("請求現金逾時!");
+              reset2init();
+              break;
             case 0x1123:
               // Money PAYOUT SUCCESS
-              setMoneyCounter((pre) => {
-                if (pre - 100 === 0) reset2init();
-                return pre - 100;
-              });
-
+              reset2init();
               break;
             default:
               break;
@@ -165,6 +172,15 @@ function Game() {
       };
       WS_SendData(JSON.stringify(data));
     } else if (gameStatus === "in-game-ready") {
+      setTimeout(() => {
+        setGameStatus(pre => {
+          if (pre !== "in-game-released") {
+            getRewardFromServer();
+            console.log("Auto Start!");
+          }
+          return "in-game-released";
+        });
+      }, 5000);
     } else if (gameStatus === "in-game-pressed") {
     } else if (gameStatus === "in-game-released") {
     } else if (gameStatus === "in-game-show-result") {
