@@ -27,11 +27,11 @@ const useStyles = makeStyles((
     {
         rollerSlot: {
             height: "40vw",
-            width: "25vw"
+            width: "23vw"
         },
         slotItem: {
             height: "40vw",
-            width: "25vw",
+            width: "23vw",
             display: "flex",
             justifyContent: "center",
             alignItems: "center"

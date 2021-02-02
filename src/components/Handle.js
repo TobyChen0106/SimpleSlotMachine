@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MachineBackImagePng from "../images/handle.png";
 import { makeStyles } from "@material-ui/core/styles";
+import { useEventListener } from "./useEventListener";
 
 const useStyles = makeStyles({
   machineBackHolder: {
@@ -18,54 +19,39 @@ const useStyles = makeStyles({
   },
 });
 
-function Handle(props) {
+function Handle({ gameStatus, zIndex, handlePress, handleRelease }) {
   const classes = useStyles();
 
-  useEffect(() => {
-    document.addEventListener("mousedown", mouseDown);
-    document.addEventListener("mouseup", mouseUp);
-    document.addEventListener("touchstart", mouseDownt);
-    document.addEventListener("touchend", mouseUp);
-  }, []);
-
   const [handleState, setHandleState] = useState(null);
-  useEffect(() => {
-    if (handleState === true) {
-      props.handlePress();
-    } else if (handleState === false) {
-      props.handleRelease();
-    }
-  }, [handleState]);
-
-  const [enable, setEnable] = useState(true);
-
-  //   switch (props.gameStatus) {
-  //     case "init":
-  //       setEnable(false);
-  //       break;
-  //     case "in-game-ready":
-  //       setEnable(true);
-  //       break;
-  //   }
+  const gameStatusRef = useRef();
+  gameStatusRef.current = gameStatus;
 
   const mouseDown = (e) => {
-    // e.preventDefault();
-    if (e.clientX >= window.innerWidth * 0.5) {
-      setHandleState(true);
+    e.preventDefault();
+    if (gameStatusRef.current === "in-game-ready") {
+      if (e.clientX >= window.innerWidth * 0.5) {
+        setHandleState(true);
+        handlePress();
+      }
     }
   };
+  useEventListener("mousedown", mouseDown);
 
-  const mouseDownt = (e) => {
-    // e.preventDefault();
-    if (e.touches[0].clientX >= window.innerWidth * 0.5) {
-      setHandleState(true);
-    }
-  };
+  // const mouseDownt = (e) => {
+  //   // e.preventDefault();
+  //   if (e.touches[0].clientX >= window.innerWidth * 0.5) {
+  //     setHandleState(true);
+  //   }
+  // };
 
   const mouseUp = (e) => {
-    // e.preventDefault();
-    setHandleState(false);
+    e.preventDefault();
+    if (gameStatusRef.current === "in-game-pressed") {
+      setHandleState(false);
+      handleRelease();
+    }
   };
+  useEventListener("mouseup", mouseUp);
 
   const handleStyle = handleState
     ? {
@@ -78,7 +64,7 @@ function Handle(props) {
       };
 
   return (
-    <div className={classes.machineBackHolder} style={{ zIndex: props.zIndex }}>
+    <div className={classes.machineBackHolder} style={{ zIndex: zIndex }}>
       <img
         src={MachineBackImagePng}
         className={classes.machineBackImage}

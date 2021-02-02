@@ -9,9 +9,9 @@ const useStyles = makeStyles((
             display: "flex",
             position: "absolute",
             height: "40vw",
-            width: "75vw",
+            width: "69vw",
             top: "calc(50vh + -25vw + 1.5vw)",
-            left: "12.5vw",
+            left: "15.5vw",
         },
     })
 );
