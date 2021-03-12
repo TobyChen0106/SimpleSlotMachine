@@ -252,10 +252,6 @@ function Game() {
       .catch(function (error) {
         console.log(error);
         // window.alert("[錯誤] 與伺服器連線錯誤!");
-<<<<<<< HEAD
-=======
-        console.log("[錯誤] 與伺服器連線錯誤!");
->>>>>>> 4f9a188ff11a97d0e37847cd71afa2505c743ac4
         return 0;
       })
       .then((r) => {
