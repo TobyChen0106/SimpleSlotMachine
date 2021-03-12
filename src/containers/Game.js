@@ -13,7 +13,7 @@ import failSrc from "../musics/fail.mp3";
 import axios from "axios";
 
 import "./firework.css";
-const version = "0.2.5.1"
+const version = "0.3.12.1"
 
 const useStyles = makeStyles({
   gameRoot: {
@@ -159,14 +159,9 @@ function Game() {
     ) {
       console.log(objData);
       ws.current.send(objData);
-<<<<<<< HEAD
-    } else {
-      console.log("WebSocket Closed");
-=======
     } else if (ws.current.readyState === 2 || ws.current.readyState === 3) {
       // alert("[錯誤] 與伺服器連線錯誤!");
       console.log("[錯誤] 與伺服器連線錯誤!");
->>>>>>> 4f9a188ff11a97d0e37847cd71afa2505c743ac4
     }
   };
 
@@ -198,15 +193,6 @@ function Game() {
       }
     } else if (gameStatus === "in-game-ready") {
       setTimeout(() => {
-<<<<<<< HEAD
-        setGameStatus((pre) => {
-          if (pre !== "in-game-released") {
-            getRewardFromServer();
-            console.log("Auto Start!");
-          }
-          return "in-game-released";
-        });
-=======
         if (gameStatusRef.current === "in-game-ready") {
           console.log("Auto Start!");
           // setGameStatus("in-game-released");
@@ -215,7 +201,6 @@ function Game() {
         } else {
           console.log("No Auto Start!");
         }
->>>>>>> 4f9a188ff11a97d0e37847cd71afa2505c743ac4
       }, 5000);
     } else if (gameStatus === "in-game-pressed") {
     } else if (gameStatus === "in-game-released") {
