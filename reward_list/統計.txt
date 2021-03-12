@@ -1,0 +1,17 @@
+# reward_list (結餘 8300).csv
+Total iteration: 3000 Total Remain: 8300
+Reward 0: 1805 times
+Reward 200: 981 times
+Reward 300: 130 times
+Reward 500: 61 times
+Reward 1000: 15 times
+Reward 2000: 8 times
+
+# reward_list (結餘 5300).csv
+Total iteration: 3000 Total Remain: 5300
+Reward 0: 1740 times
+Reward 200: 1103 times
+Reward 300: 77 times
+Reward 500: 60 times
+Reward 1000: 14 times
+Reward 2000: 6 times

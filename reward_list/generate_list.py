@@ -3,7 +3,7 @@ import pandas as pd
 
 rewardList = [0, 200, 300, 500, 1000, 2000]
 threshould = 4000
-probability = [2220, 300, 300, 150, 20, 10]
+probability = [1200, 800, 50, 50, 10, 10]
 initial_value = 5000
 iteration = 3000
 

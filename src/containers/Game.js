@@ -53,12 +53,14 @@ const fail = new Audio(failSrc);
 function Game() {
   const classes = useStyles({ test: "tset" });
   const ws = useRef(null);
+  const [ws_state, setWs_state] = useState(false);
 
   useEffect(() => {
     ws.current = new WebSocket("ws://127.0.0.1:5233/");
     // ws.current = new WebSocket("ws://localhost:4000/");
     ws.current.onopen = () => {
       console.log("ws connected");
+      setWs_state(true);
     };
 
     ws.current.onmessage = (event) => {
@@ -145,8 +147,8 @@ function Game() {
     ) {
       console.log(objData);
       ws.current.send(objData);
-    } else if (ws.current.readyState === 2 || ws.current.readyState === 3) {
-      alert("WebSocket Closed");
+    } else {
+      console.log("WebSocket Closed");
     }
   };
 
@@ -170,10 +172,16 @@ function Game() {
           },
         ]),
       };
-      WS_SendData(JSON.stringify(data));
+      if (ws_state) {
+        WS_SendData(JSON.stringify(data));
+      } else {
+        setTimeout(() => {
+          setGameStatus("in-game-ready");
+        }, 500);
+      }
     } else if (gameStatus === "in-game-ready") {
       setTimeout(() => {
-        setGameStatus(pre => {
+        setGameStatus((pre) => {
           if (pre !== "in-game-released") {
             getRewardFromServer();
             console.log("Auto Start!");
@@ -218,7 +226,7 @@ function Game() {
       .catch(function (error) {
         // handle error
         console.log(error);
-        window.alert("[錯誤] 與伺服器連線錯誤!");
+        // window.alert("[錯誤] 與伺服器連線錯誤!");
         return 0;
       })
       .then((r) => {
@@ -275,7 +283,13 @@ function Game() {
     if (reward > 0) {
       firework.play();
       claps.play();
-      WS_SendData(JSON.stringify(data));
+      if (ws_state) {
+        WS_SendData(JSON.stringify(data));
+      } else {
+        setTimeout(() => {
+          reset2init();
+        }, 5000);
+      }
     } else {
       fail.play();
       setTimeout(() => {
