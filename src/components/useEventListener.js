@@ -13,7 +13,7 @@ export function useEventListener(eventName, handler, element = window) {
     if (!isSupported) return;
 
     const eventListener = (event) => savedHandler.current(event);
-    element.addEventListener(eventName, eventListener);
+    element.addEventListener(eventName, eventListener, { passive: false });
     return () => {
       element.removeEventListener(eventName, eventListener);
     };

@@ -13,6 +13,7 @@ import failSrc from "../musics/fail.mp3";
 import axios from "axios";
 
 import "./firework.css";
+const version = "0.2.5.1"
 
 const useStyles = makeStyles({
   gameRoot: {
@@ -54,6 +55,11 @@ function Game() {
   const classes = useStyles({ test: "tset" });
   const ws = useRef(null);
 
+  const [gameStatus, setGameStatus] = useState("init");
+
+  const gameStatusRef = useRef();
+  gameStatusRef.current = gameStatus;
+
   useEffect(() => {
     ws.current = new WebSocket("ws://127.0.0.1:5233/");
     // ws.current = new WebSocket("ws://localhost:4000/");
@@ -69,7 +75,8 @@ function Game() {
       switch (data.COMMAND) {
         case 0x0102:
           if (String(data.RETURNED_MESSAGE) === "ERROR_CASH_NOCHANGE") {
-            window.alert("庫存現金不足!");
+            // window.alert("庫存現金不足!");
+            console.log("庫存現金不足!");
             reset2init();
           }
           break;
@@ -80,11 +87,16 @@ function Game() {
               // Got Money (Coin)
               break;
             case 0x1101:
-            // Got Money (Paper)
-            // break;
+              // Got Money (Paper)
+              if (gameStatusRef.current === "init" || gameStatusRef.current === "wait-money") {
+                setGameStatus("in-game-ready");
+              }
+              break;
             case 0x1121:
               // GOT All Money
-              setGameStatus("in-game-ready");
+              if (gameStatusRef.current === "init" || gameStatusRef.current === "wait-money") {
+                setGameStatus("in-game-ready");
+              }
               break;
             case 0x1125:
               // Wait for money Timeout
@@ -132,7 +144,7 @@ function Game() {
     firework.currentTime = 0;
     claps.currentTime = 0;
     fail.currentTime = 0;
-    setTarget([0, 0, 0]);
+    // setTarget([0, 0, 0]);
     setReward(0);
     setGameStatus("init");
   };
@@ -146,7 +158,8 @@ function Game() {
       console.log(objData);
       ws.current.send(objData);
     } else if (ws.current.readyState === 2 || ws.current.readyState === 3) {
-      alert("WebSocket Closed");
+      // alert("[錯誤] 與伺服器連線錯誤!");
+      console.log("[錯誤] 與伺服器連線錯誤!");
     }
   };
 
@@ -156,7 +169,6 @@ function Game() {
   const [reward, setReward] = useState(0);
   const [moneyCounter, setMoneyCounter] = useState(0);
 
-  const [gameStatus, setGameStatus] = useState("init");
   useEffect(() => {
     if (gameStatus === "init") {
     } else if (gameStatus === "wait-money") {
@@ -173,13 +185,14 @@ function Game() {
       WS_SendData(JSON.stringify(data));
     } else if (gameStatus === "in-game-ready") {
       setTimeout(() => {
-        setGameStatus(pre => {
-          if (pre !== "in-game-released") {
-            getRewardFromServer();
-            console.log("Auto Start!");
-          }
-          return "in-game-released";
-        });
+        if (gameStatusRef.current === "in-game-ready") {
+          console.log("Auto Start!");
+          // setGameStatus("in-game-released");
+          handlePress();
+          setTimeout(handleRelease, 800);
+        } else {
+          console.log("No Auto Start!");
+        }
       }, 5000);
     } else if (gameStatus === "in-game-pressed") {
     } else if (gameStatus === "in-game-released") {
@@ -191,24 +204,22 @@ function Game() {
   }, [gameStatus]);
 
   const handlePress = () => {
-    if (gameStatus === "in-game-ready") {
+    if (gameStatusRef.current === "in-game-ready") {
       setGameStatus("in-game-pressed");
       setPreTurnState(true);
     }
   };
 
   const handleRelease = () => {
-    if (gameStatus === "in-game-pressed") {
+    if (gameStatusRef.current === "in-game-pressed") {
       setGameStatus("in-game-released");
+      console.log("handleRelease")
       getRewardFromServer();
-      // console.log(result, reward);
-      // setTarget(result);
-      // setTarget(reward);
     }
   };
 
   const getRewardFromServer = () => {
-    let result = [2, 2, 2];
+    let result = [3, 4, 5];
     axios
       .get("/api/get-reward")
       .then(function (response) {
@@ -216,9 +227,9 @@ function Game() {
         return response.data.reward ? response.data.reward : 0;
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
-        window.alert("[錯誤] 與伺服器連線錯誤!");
+        // window.alert("[錯誤] 與伺服器連線錯誤!");
+        console.log("[錯誤] 與伺服器連線錯誤!");
         return 0;
       })
       .then((r) => {
@@ -238,7 +249,7 @@ function Game() {
             ];
             break;
           case 300:
-            result = [8, 8, Math.floor(Math.random() * 5) + 2];
+            result = [7, 8, Math.floor(Math.random() * 5) + 2];
             break;
           case 500:
             result = [7, 7, Math.floor(Math.random() * 5) + 2];
@@ -252,6 +263,7 @@ function Game() {
         }
         setTarget(result);
         setReward(Number(r));
+        console.log(Number(r), result);
         setPreTurnState(false);
         setTimeout(() => {
           setGameStatus("in-game-show-result");
@@ -306,7 +318,7 @@ function Game() {
         handlePress={handlePress}
         handleRelease={handleRelease}
       />
-      <SlotMachine zIndex={100} />
+      <SlotMachine zIndex={100} version={version}/>
 
       <div
         className="pyro"
