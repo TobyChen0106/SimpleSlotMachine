@@ -17,6 +17,18 @@ const useStyles = makeStyles({
     userDrag: "none",
     userSelect: "none",
   },
+  dummyBytton: {
+    width: "50vw",
+    height: "100vh",
+    position: "absolute",
+    top: "0",
+    left: "50vw",
+    transitionDuration: "0.3s",
+    userDrag: "none",
+    userSelect: "none",
+    backgroundColor: "rgba(0,0,0,0)",
+    zIndex: 101
+  }
 });
 
 function Handle({ gameStatus, zIndex, handlePress, handleRelease }) {
@@ -26,51 +38,73 @@ function Handle({ gameStatus, zIndex, handlePress, handleRelease }) {
   const gameStatusRef = useRef();
   gameStatusRef.current = gameStatus;
 
-  const mouseDown = (e) => {
-    e.preventDefault();
-    if (gameStatusRef.current === "in-game-ready") {
-      if (e.clientX >= window.innerWidth * 0.5) {
-        setHandleState(true);
-        handlePress();
-      }
-    }
-  };
-  useEventListener("mousedown", mouseDown);
 
-  // const mouseDownt = (e) => {
-  //   // e.preventDefault();
-  //   if (e.touches[0].clientX >= window.innerWidth * 0.5) {
-  //     setHandleState(true);
+  // const mouseDown = (e) => {
+  //   e.preventDefault();
+  //   if (gameStatusRef.current === "in-game-ready") {
+  //     if (e.clientX >= window.innerWidth * 0.5) {
+  //       setHandleState(true);
+  //       handlePress();
+  //     }
   //   }
   // };
+  // useEventListener("mousedown", mouseDown);
 
-  const mouseUp = (e) => {
+  // const mouseDownt = (e) => {
+  //   e.preventDefault();
+  //   if (gameStatusRef.current === "in-game-ready") {
+  //     if (e.touches[0].clientX >= window.innerWidth * 0.5) {
+  //       setHandleState(true);
+  //     }
+  //   }
+  // };
+  // useEventListener("touchstart", mouseDownt);
+
+  // const mouseUp = (e) => {
+  //   e.preventDefault();
+  //   if (gameStatusRef.current === "in-game-pressed") {
+  //     setHandleState(false);
+  //     handleRelease();
+  //   }
+  // };
+  // useEventListener("mouseup", mouseUp);
+  // useEventListener("touchend", mouseUp);
+
+  const handleHandleClicked = (e) => {
     e.preventDefault();
-    if (gameStatusRef.current === "in-game-pressed") {
-      setHandleState(false);
-      handleRelease();
+    if (gameStatusRef.current === "in-game-ready") {
+      console.log("pressed");
+      setHandleState(true);
+      handlePress();
+
+      setTimeout(() => {
+        setHandleState(false);
+        handleRelease();
+      }, 800);
     }
-  };
-  useEventListener("mouseup", mouseUp);
+  }
 
   const handleStyle = handleState
     ? {
-        transform: "rotate(90deg)",
-        transformOrigin: "bottom left",
-      }
+      transform: "rotate(90deg)",
+      transformOrigin: "bottom left",
+    }
     : {
-        transform: "rotate(0deg)",
-        transformOrigin: "bottom left",
-      };
+      transform: "rotate(0deg)",
+      transformOrigin: "bottom left",
+    };
 
   return (
-    <div className={classes.machineBackHolder} style={{ zIndex: zIndex }}>
-      <img
-        src={MachineBackImagePng}
-        className={classes.machineBackImage}
-        style={handleStyle}
-      ></img>
-    </div>
+    <>
+      <div className={classes.dummyBytton} onClick={handleHandleClicked}/>
+      <div className={classes.machineBackHolder} style={{ zIndex: zIndex }} onClick={handleHandleClicked}>
+        <img
+          src={MachineBackImagePng}
+          className={classes.machineBackImage}
+          style={handleStyle}
+        ></img>
+      </div>
+    </>
   );
 }
 

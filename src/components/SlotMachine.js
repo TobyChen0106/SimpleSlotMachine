@@ -1,4 +1,4 @@
-import MachineFrontImageSrc  from '../images/base-front.png';
+import MachineFrontImageSrc from '../images/base-front.png';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((
@@ -14,6 +14,13 @@ const useStyles = makeStyles((
             top: 0,
             userDrag: "none",
             userSelect: "none",
+        },
+        version:{
+            fontSize: "1vw",
+            position: "absolute",
+            right: "15vw",
+            bottom: "1vw",
+            color: "#962543"
         }
     })
 );
@@ -21,9 +28,12 @@ const useStyles = makeStyles((
 function SlotMachine(props) {
     const classes = useStyles();
     return (
-        <div className={classes.machineFrontHolder} >
-            <img src={MachineFrontImageSrc} className={classes.machineFrontImage} style={{ zIndex: props.zIndex }} />
-        </div>
+        <>
+            <div className={classes.machineFrontHolder} >
+                <img src={MachineFrontImageSrc} className={classes.machineFrontImage} style={{ zIndex: props.zIndex }} />
+            </div>
+            <div  className={classes.version} style={{ zIndex: props.zIndex+1 }}>{`Ver. ${props.version}`}</div>
+        </>
     );
 }
 
